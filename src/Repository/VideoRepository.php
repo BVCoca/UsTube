@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\Video;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
@@ -40,16 +41,32 @@ class VideoRepository extends ServiceEntityRepository
         }
     }
 
-    public function findRandomVideos($limit)
+    public function findRandomVideos($user, $limit)
     {
         $rsm = new ResultSetMapping();
         $rsm->addEntityResult(Video::class, 'v');
         $rsm->addFieldResult('v', 'id', 'id');
         $rsm->addFieldResult('v', 'title', 'title');
         $rsm->addFieldResult('v', 'description', 'description');
-        // Add more field results for other properties as needed.
+        $rsm->addFieldResult('v', 'path_video', 'pathVideo');
+        $rsm->addFieldResult('v', 'image', 'image');
+        $rsm->addFieldResult('v', 'created_at', 'createdAt');
 
-        $query = $this->getEntityManager()->createNativeQuery('SELECT * FROM video ORDER BY RAND() LIMIT :limit', $rsm);
+        $rsm->addJoinedEntityResult(User::class, 'u', 'v', 'user');
+        $rsm->addFieldResult('u', 'user_id', 'id');
+        $rsm->addFieldResult('u', 'pseudo', 'pseudo');
+
+        $query = $this->getEntityManager()->createNativeQuery(
+            'SELECT v.*, u.id as user_id, u.pseudo as pseudo
+             FROM video v
+             INNER JOIN user u ON v.user_id = u.id
+             WHERE v.user_id = :userId
+             ORDER BY RAND()
+             LIMIT :limit',
+            $rsm
+        );
+
+        $query->setParameter('userId', $user->getId());
         $query->setParameter('limit', $limit);
 
         return $query->getResult();

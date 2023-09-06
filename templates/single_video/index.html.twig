@@ -13,7 +13,9 @@
 				<h2>{{video.title}}</h2>
 				<div class="d-flex align-items-center">
 					<div class="imgAvatarVideoDetail">
-						<img src="{{ asset('uploads/pictures/' ~ video.user.avatar)}}" alt="" style="cursor: pointer;" class="avatarVideo" onclick="window.location='{{path('app_profil', {'id': video.user.id})}}'">
+						<a href="{{path('app_profil', {'id': video.user.id})}}">
+							<img src="{{ asset('uploads/pictures/' ~ video.user.avatar)}}" alt="" style="cursor: pointer;" class="avatarVideo">
+						</a>
 					</div>
 					<div>
 						<a href="{{path('app_profil', {'id': video.user.id})}}" class="pseudoLink">
@@ -30,7 +32,10 @@
 
 		<div class="videoList">
 			{% for randomVideo in randomVideos %}
-				<p>{{randomVideo.title}}</p>
+				<div class="d-flex">
+					<img src="{{ asset('uploads/videos/pictures/' ~ randomVideo.image)}}" alt="">
+					<p>{{randomVideo.title}}</p>
+				</div>
 			{% endfor %}
 		</div>
 	</div>
