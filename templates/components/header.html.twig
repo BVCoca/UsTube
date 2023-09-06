@@ -1,0 +1,53 @@
+<header>
+	<nav>
+		<a href="/">
+			<div class="homepage">
+				<img src="{{asset('./assets/images/logo.png')}}" alt="Logo du site UsTube">
+				<h1>UsTube</h1>
+			</div>
+		</a>
+		<div
+			class="searchBar">
+			<!-- <label for="search">Rechercher :</label> -->
+			<input type="text" name="search" placeholder="Rechercher">
+			<button type="submit">
+				<i class="fa-solid fa-magnifying-glass"></i>
+			</button>
+		</div>
+
+		{% if app.user %}
+			<div id="mySidenav" class="sidenav">
+				<a id="closeBtn" href="#" class="close">x</a>
+				<div>
+					<a href="{{path('app_profil', {'id':app.user.id})}}">
+						{% if app.user.avatar %}
+							<img id="avatarBtn" src="{{ asset('uploads/pictures/' ~ app.user.avatar) }}" alt="">
+						{% else %}
+							<img id="avatarBtn" src="{{ asset('assets/images/profil.png')}}" alt="">
+						{% endif %}<br>Profil</a>
+					<a href="{{path('app_add_video')}}">Mettre<br>en ligne<br>une vidéo</a>
+					<a href="{{path('app_logout')}}">Se déconnecter</a>
+				</div>
+			</div>
+
+			<a href="#" id="openBtn">
+				{% if app.user.avatar %}
+					<img id="avatarBtn" src="{{ asset('uploads/pictures/' ~ app.user.avatar) }}" alt="">
+				{% else %}
+					<img id="avatarBtn" src="{{ asset('assets/images/profil.png')}}" alt="">
+				{% endif %}
+
+			</a>
+		</div>
+	{% else %}
+		<div class="navAccount">
+			<div>
+				<a href="{{path('app_login')}}" id="signIn">Se connecter</a>
+			</div>
+			<div>
+				<a href="{{path('app_register')}}" id="signUp">S'inscrire</a>
+			</div>
+		</div>
+	{% endif %}
+
+</nav></header>

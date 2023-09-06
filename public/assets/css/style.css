@@ -1,0 +1,282 @@
+body {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.568);
+    padding: 0 15px;
+}
+
+nav h1 {
+    color: white;
+    font-size: 1.5rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 55px;
+}
+
+nav a {
+    color: black;
+}
+
+nav a:focus {
+    color: black;
+}
+
+.homepage {
+    display: flex;
+    align-items: center;
+}
+
+.homepage img{
+    width: 50px;
+    margin-right: 5px;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    width: 35%;
+}
+
+.searchBar label {
+    height: 37px;
+    border-style:solid none solid solid;
+    border-width: 2px;
+    border-color: #55A5C4;
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    font-size:18px;
+    background-color: #55A5C4;
+    color: white;
+}
+
+.searchBar input[type=text]{
+    height: 41px;
+    font-size:18px;
+    border-style: solid none solid solid;
+    border-color: #55A5C4;
+    color: white;
+    padding-left: 5px;
+    border-radius: 10px 0 0 10px;
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+    width: 100%;
+}
+
+.searchBar input[type=text]::placeholder{
+    color: rgb(214, 214, 214);
+}
+
+.searchBar button {
+    width: 50px;
+    height: 41px;
+    border-style: solid solid solid none;
+    border-color: #55A5C4;
+    border-radius: 0 10px 10px 0;
+    background-color: #55A5C4;
+}
+
+.fa-magnifying-glass {
+    color: white;
+}
+
+/* Sidenav menu */
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: -250px;
+    background-color: #e8e8e8;
+    padding-top: 60px;
+    transition: right 0.5s ease;
+    overflow: hidden;
+}
+
+/* Sidenav menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #55A5C4;
+    display: block;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.sidenav img {
+    width: 50px;
+}
+
+.sidenav a:hover {
+    color: #3e788f;
+    background-color: #f3f3f3;
+    scale: 1.1;
+    
+}
+
+.sidenav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Active class */
+.sidenav.active {
+    right: 0;
+}
+
+/* Close btn */
+.sidenav .close {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 36px;
+    padding: 8px 8px 8px 8px;
+    
+}
+
+.close:hover {
+    background-color: #e8e8e8;
+}
+
+/* Icône burger */
+.burger-icon span {
+    display: block;
+    width: 35px;
+    height: 5px;
+    background-color: #55A5C4;
+    margin: 6px 0;
+}
+
+#avatarBtn{
+    width: 42px;
+    height: 42px;
+    object-fit:fill;
+    border-radius: 100%;
+}
+
+#avatarBtn:active {
+    outline: 2px solid #55A5C4;
+}
+
+#navAvatar{
+    width: 70px;
+    height: 70px;
+    object-fit:fill;
+    border-radius: 100%;
+}
+
+.navAccount {
+    display: flex;
+    justify-content: space-between;
+}
+
+#signIn, #signUp {
+    color :#55A5C4;
+    transition: .3s;
+}
+
+#signUp {
+    margin: 0 20px;
+}
+
+#signIn:hover, #signUp:hover {
+    color:rgb(110, 205, 243)
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card {
+    border: none;
+    margin: 0 15px;
+}
+
+.videoPlayer {
+    width: 1000px;
+}
+
+.card img{
+    height: 275px;
+    object-fit: cover;
+}
+
+.cardHover {
+    overflow: hidden;
+}
+
+.cardHover img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.cardHover.hovered img {
+    transform: scale(1.1);
+}
+
+.cardProfil {
+    margin: 25px auto 0 auto;
+    border: #55A5C4 1px solid;
+    border-radius: 10px;
+    width: 20%;
+    text-align: center;
+    padding: 15px;
+}
+
+.AllVideos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.btn {
+    color: #e8e8e8;
+    background-color: #55A5C4;
+    border: none;
+    padding: 10px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #3e788f;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    color: rgb(22, 22, 22);
+}
+
+.alert-danger {
+    background-color: rgba(199, 51, 51, 0.822);
+}
+
+.alert-success {
+    background-color: rgba(51, 199, 71, 0.822);
+}
+
+
+@media screen and (max-width: 732px) {
+    * {
+        color: red !important;
+    }
+}

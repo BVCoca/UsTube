@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{pageTitle}}
+{% endblock %}
+
+{% block body %}
+	{% if app.user == profileUser %}
+		<h2>Bonjour,{{profileUser.pseudo}}
+		</h2>
+	{% else %}
+		<h2>Profil de
+			{{profileUser.pseudo}}</h2>
+	{% endif %}
+
+
+	{{profileUser.email}}
+
+{% endblock %}

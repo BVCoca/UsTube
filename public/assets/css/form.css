@@ -1,0 +1,44 @@
+.field-form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.floating-labelEmail, .floating-labelPseudo, .floating-labelPassword {
+    pointer-events: none;
+    position: absolute;
+    left: 5px;
+    top:5px;
+    color:#495057b7;
+    transform-origin: left top;
+    transition: transform 0.3s ease-in-out;
+}
+
+.inputEmail:focus + .floating-labelEmail, 
+.inputPassword:focus + .floating-labelPassword, 
+.inputPseudo:focus + .floating-labelPseudo {
+    color:#000000;
+    transform: translateY(-100%) scale(0.85);
+}
+
+.field-form input {
+    border-radius: 5px;
+    padding: 0.375rem 0.75rem;
+    color: #495057;
+    border: 1px solid #ced4da;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.field-form textarea {
+    resize: vertical;
+}
+
+.btn-form {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}

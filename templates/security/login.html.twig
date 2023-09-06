@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion | UsTube
+{% endblock %}
+
+{% block body %}
+	<section>
+		<h1>Connexion</h1>
+		{% for label,message in app.flashes %}
+			<div class="alert alert-{{label}}">
+				{{ message[0] }}
+			</div>
+		{% endfor %}
+		<form method="post">
+			<div class="field-form">
+				<div class="input-container">
+					<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="inputEmail" autocomplete="email" required autofocus>
+					<label for="inputEmail" class="floating-labelEmail">Email</label>
+				</div>
+				<div class="input-container">
+					<input type="password" name="password" id="inputPassword" class="inputPassword" autocomplete="current-password" required>
+					<label for="inputPassword" class="floating-labelPassword">Mot de passe</label>
+				</div>
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			</div>
+
+			<div class="checkbox mb-3">
+				<label>
+					<input type="checkbox" name="_remember_me">
+					Se souvenir de moi
+				</label>
+			</div>
+
+			<div class="btn-form">
+				<button class="btn" type="submit">
+					Se connecter
+				</button>
+			</div>
+		</form>
+	</section>
+{% endblock %}

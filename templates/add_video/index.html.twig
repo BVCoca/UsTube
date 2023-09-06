@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mettre en ligne | UsTube
+{% endblock %}
+
+{% block body %}
+	<section class="form">
+		<h1>
+			Mettre en ligne une vidéo
+		</h1>
+		{% for label,message in app.flashes %}
+			<div class="alert alert-{{label}}">
+				{{ message[0] }}
+			</div>
+		{% endfor %}
+		{{ form_errors(addVideoForm) }}
+
+		{{form_start(addVideoForm)}}
+		<div class="field-form">
+			{{form_row(addVideoForm.title)}}
+			{{form_row(addVideoForm.path_video)}}
+			{{form_row(addVideoForm.description)}}
+			{{form_row(addVideoForm.image)}}
+		</div>
+		<div class="btn-form">
+			{{form_row(addVideoForm.submit)}}
+		</div>
+		{{form_end(addVideoForm)}}
+	</section>
+
+
+{% endblock %}
