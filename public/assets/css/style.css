@@ -209,14 +209,39 @@ section {
 
 .card {
     border: none;
-    margin: 0 15px;
+    margin: 0 15px 25px 15px;
+}
+
+.card a {
+    color: #212529;
+}
+
+.card a:hover {
+    color: #77838f;
+}
+
+.card-body {
+    padding-left: 0;
+}
+
+.imgAvatarVideo {
+    width: 20%;
+}
+
+.avatarVideo {
+    width: 80%;
+    border-radius: 100%;
+}
+
+.contentCardVideo {
+    width: 100%;
 }
 
 .videoPlayer {
     width: 1000px;
 }
 
-.card img{
+.card .card-img-top{
     height: 275px;
     object-fit: cover;
 }
@@ -225,11 +250,11 @@ section {
     overflow: hidden;
 }
 
-.cardHover img {
+.cardHover .card-img-top {
     transition: transform 0.3s ease-in-out;
 }
 
-.cardHover.hovered img {
+.cardHover.hovered .card-img-top {
     transform: scale(1.1);
 }
 

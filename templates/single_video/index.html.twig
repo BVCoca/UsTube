@@ -1,14 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SingleVideoController!
+{% block title %}
+	{{video.title}}
+	| UsTube
 {% endblock %}
 
 {% block body %}
-	<section>
-		<h2>{{video.title}}</h2>
-		<video controls src="{{ asset('uploads/videos/srcVideos/' ~ video.pathVideo) }}" poster="{{ asset('assets/uploads/images/' ~ video.image) }}" type="video/mp4" class="videoPlayer"></video>
-		<p>Créer le
-			{{video.createdAt|date('d/m/Y')}}</p>
-		<p>{{video.description}}</p>
-	</section>
+	<div class="d-flex justify-content-start mt-5">
+		<div class="d-flex flex-column align-items-center ms-5">
+			<video controls src="{{ asset('uploads/videos/srcVideos/' ~ video.pathVideo) }}" poster="{{ asset('assets/uploads/images/' ~ video.image) }}" type="video/mp4" class="videoPlayer"></video>
+			<div>
+				<h2>{{video.title}}</h2>
+				<div class="contentCardVideo">
+					<div>
+						<img src="{{ asset('uploads/pictures/' ~ video.user.avatar)}}" alt="">
+					</div>
+					<div>
+						{{video.user.pseudo}}
+					</div>
+				</div>
+			</div>
+			<p>Créer le
+				{{video.createdAt|date('d/m/Y')}}</p>
+			<p>{{video.description}}</p>
+		</div>
+	</div>
 {% endblock %}

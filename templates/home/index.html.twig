@@ -13,8 +13,10 @@
 						<img class="card-img-top" src="{{ asset('uploads/videos/pictures/' ~ video.image) }}" alt="Card image cap">
 					</div>
 					<div class="card-body d-flex">
-
-						<div>
+						<div class="imgAvatarVideo">
+							<img src="{{ asset('uploads/pictures/' ~ video.user.avatar) }}" alt="Avatar utilisateur qui a posté la vidéo" class="avatarVideo">
+						</div>
+						<div class="contentCardVideo">
 							<h5 class="card-title">{{video.title}}</h5>
 							<a href="{{path('app_profil', {'id': video.user.id})}}">
 								<p class="card-text">{{video.user.pseudo}}</p>
