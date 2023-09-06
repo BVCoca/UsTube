@@ -7,22 +7,25 @@
 
 {% block body %}
 	<div class="d-flex justify-content-start mt-5">
-		<div class="d-flex flex-column align-items-center ms-5">
-			<video controls src="{{ asset('uploads/videos/srcVideos/' ~ video.pathVideo) }}" poster="{{ asset('assets/uploads/images/' ~ video.image) }}" type="video/mp4" class="videoPlayer"></video>
+		<div class="d-flex flex-column ms-5 videoDetail">
+			<video controls src="{{ asset('uploads/videos/srcVideos/' ~ video.pathVideo) }}" poster="{{ asset('assets/uploads/images/' ~ video.image) }}" type="video/mp4" class="videoPlayer mb-4"></video>
 			<div>
 				<h2>{{video.title}}</h2>
-				<div class="contentCardVideo">
-					<div>
-						<img src="{{ asset('uploads/pictures/' ~ video.user.avatar)}}" alt="">
+				<div class="d-flex align-items-center">
+					<div class="imgAvatarVideoDetail">
+						<img src="{{ asset('uploads/pictures/' ~ video.user.avatar)}}" alt="" style="cursor: pointer;" class="avatarVideo" onclick="window.location='{{path('app_profil', {'id': video.user.id})}}'">
 					</div>
 					<div>
-						{{video.user.pseudo}}
+						<a href="{{path('app_profil', {'id': video.user.id})}}" class="pseudoLink">
+							<p class="card-text">{{video.user.pseudo}}</p>
+						</a>
 					</div>
 				</div>
 			</div>
-			<p>Créer le
-				{{video.createdAt|date('d/m/Y')}}</p>
-			<p>{{video.description}}</p>
+			<div class="descriptionVideo mt-4">
+				<p class="card-text date" id="date-{{video.id}}">{{video.createdAt|date('d/m/Y H:i')}}</p>
+				<p>{{video.description}}</p>
+			</div>
 		</div>
 	</div>
 {% endblock %}
