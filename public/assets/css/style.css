@@ -212,11 +212,11 @@ section {
     margin: 0 15px 25px 15px;
 }
 
-.card a {
+.pseudoLink {
     color: #212529;
 }
 
-.card a:hover {
+.pseudoLink:hover {
     color: #77838f;
 }
 
@@ -226,6 +226,10 @@ section {
 
 .imgAvatarVideo {
     width: 20%;
+}
+
+.imgAvatarVideoDetail {
+    width: 8%;
 }
 
 .avatarVideo {
@@ -238,7 +242,11 @@ section {
 }
 
 .videoPlayer {
-    width: 1000px;
+    width: 100%;
+}
+
+.videoDetail {
+    width: 50%;
 }
 
 .card .card-img-top{
@@ -275,36 +283,11 @@ section {
     margin-top: 2rem;
 }
 
-.btn {
-    color: #e8e8e8;
-    background-color: #55A5C4;
-    border: none;
-    padding: 10px 5px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #3e788f;
-}
-
-.alert {
-    display: flex;
-    justify-content: center;
+.descriptionVideo {
+    background-color: #d3d2d2;
     padding: 10px;
-    margin-bottom: 3rem;
     border-radius: 10px;
-    color: rgb(22, 22, 22);
 }
-
-.alert-danger {
-    background-color: rgba(199, 51, 51, 0.822);
-}
-
-.alert-success {
-    background-color: rgba(51, 199, 71, 0.822);
-}
-
 
 @media screen and (max-width: 732px) {
     * {

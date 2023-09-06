@@ -18,7 +18,7 @@
 						</div>
 						<div class="contentCardVideo">
 							<h5 class="card-title">{{video.title}}</h5>
-							<a href="{{path('app_profil', {'id': video.user.id})}}">
+							<a href="{{path('app_profil', {'id': video.user.id})}}" class="pseudoLink">
 								<p class="card-text">{{video.user.pseudo}}</p>
 							</a>
 							<p class="card-text date" id="date-{{video.id}}">{{video.createdAt|date('d/m/Y H:i')}}</p>
