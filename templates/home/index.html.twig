@@ -19,8 +19,7 @@
 							<a href="{{path('app_profil', {'id': video.user.id})}}">
 								<p class="card-text">{{video.user.pseudo}}</p>
 							</a>
-							<p class="card-text">Le
-								{{video.createdAt|date('d/m/Y')}}</p>
+							<p class="card-text date" id="date-{{video.id}}">{{video.createdAt|date('d/m/Y H:i')}}</p>
 						</div>
 					</div>
 				</div>

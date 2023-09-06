@@ -31,6 +31,10 @@ nav a:focus {
     color: black;
 }
 
+h1 {
+    margin-bottom: 0;
+}
+
 .homepage {
     display: flex;
     align-items: center;
@@ -260,8 +264,10 @@ section {
 }
 
 .alert {
+    display: flex;
+    justify-content: center;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 3rem;
     border-radius: 10px;
     color: rgb(22, 22, 22);
 }

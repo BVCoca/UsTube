@@ -42,3 +42,8 @@
     justify-content: center;
     margin: 20px 0;
 }
+
+.loginForm {
+    margin-top: 3rem;
+    width: 30%;
+}
