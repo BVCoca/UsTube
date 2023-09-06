@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="d-flex justify-content-start mt-5">
+	<div class="d-flex align-items-start mt-5">
 		<div class="d-flex flex-column ms-5 videoDetail">
 			<video controls src="{{ asset('uploads/videos/srcVideos/' ~ video.pathVideo) }}" poster="{{ asset('assets/uploads/images/' ~ video.image) }}" type="video/mp4" class="videoPlayer mb-4"></video>
 			<div>
@@ -26,6 +26,12 @@
 				<p class="card-text date" id="date-{{video.id}}">{{video.createdAt|date('d/m/Y H:i')}}</p>
 				<p>{{video.description}}</p>
 			</div>
+		</div>
+
+		<div class="videoList">
+			{% for randomVideo in randomVideos %}
+				<p>{{randomVideo.title}}</p>
+			{% endfor %}
 		</div>
 	</div>
 {% endblock %}

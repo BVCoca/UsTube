@@ -1,4 +1,3 @@
-// Récupérez tous les éléments p par classe
 const dateElements = document.querySelectorAll(".date");
 
 // Parcourez chaque élément p
