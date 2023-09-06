@@ -32,10 +32,13 @@
 
 		<div class="videoList">
 			{% for randomVideo in randomVideos %}
-				<div class="d-flex">
-					<img src="{{ asset('uploads/videos/pictures/' ~ randomVideo.image)}}" alt="">
-					<p>{{randomVideo.title}}</p>
-				</div>
+				<a href="{{path('app_single_video', {'id': video.id})}}">
+					<div class="d-flex imgAvatarVideo">
+						<img src="{{ asset('uploads/videos/pictures/' ~ randomVideo.image)}}" alt="" class="avatarVideo">
+						<p>{{randomVideo.title}}</p>
+						{{randomVideo.user.id}}
+					</div>
+				</a>
 			{% endfor %}
 		</div>
 	</div>

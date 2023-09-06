@@ -23,10 +23,9 @@ class SingleVideoController extends AbstractController
      */
     public function index(int $id): Response
     {
-
         $video = $this->manager->getRepository(Video::class)->find($id);
-        $videoRepo = $this->manager->getRepository(Video::class);
-        $randomVideos = $videoRepo->findRandomVideos($video->getUser(), 5);
+
+        $randomVideos = $this->manager->getRepository(Video::class)->findRandom();
 
         if (!$video) {
             throw $this->createNotFoundException(

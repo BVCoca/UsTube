@@ -41,36 +41,39 @@ class VideoRepository extends ServiceEntityRepository
         }
     }
 
-    public function findRandomVideos($user, $limit)
+    public function findRandom(int $batchSize = 5): array
     {
-        $rsm = new ResultSetMapping();
-        $rsm->addEntityResult(Video::class, 'v');
-        $rsm->addFieldResult('v', 'id', 'id');
-        $rsm->addFieldResult('v', 'title', 'title');
-        $rsm->addFieldResult('v', 'description', 'description');
-        $rsm->addFieldResult('v', 'path_video', 'pathVideo');
-        $rsm->addFieldResult('v', 'image', 'image');
-        $rsm->addFieldResult('v', 'created_at', 'createdAt');
 
-        $rsm->addJoinedEntityResult(User::class, 'u', 'v', 'user');
-        $rsm->addFieldResult('u', 'user_id', 'id');
-        $rsm->addFieldResult('u', 'pseudo', 'pseudo');
+        $ids = $this->createQueryBuilder('v')
+            ->select('v.id')
+            ->getQuery()
+            ->getScalarResult();
 
-        $query = $this->getEntityManager()->createNativeQuery(
-            'SELECT v.*, u.id as user_id, u.pseudo as pseudo
-             FROM video v
-             INNER JOIN user u ON v.user_id = u.id
-             WHERE v.user_id = :userId
-             ORDER BY RAND()
-             LIMIT :limit',
-            $rsm
-        );
+        $ids = array_column($ids, 'id');
+        shuffle($ids);
 
-        $query->setParameter('userId', $user->getId());
-        $query->setParameter('limit', $limit);
 
-        return $query->getResult();
+        $randomIds = array_slice($ids, 0, $batchSize);
+
+
+        if (empty($randomIds)) {
+            return [];
+        }
+
+
+        $videos = $this->createQueryBuilder('v')
+            ->where('v.id IN (:ids)')
+            ->setParameter('ids', $randomIds)
+            ->getQuery()
+            ->getResult();
+
+
+        shuffle($videos);
+
+        return $videos;
     }
+
+
 
     //    /**
     //     * @return Video[] Returns an array of Video objects
