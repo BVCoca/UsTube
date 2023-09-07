@@ -67,4 +67,26 @@ class SingleVideoController extends AbstractController
             'commentForm' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/remove/comment/{id}", name="app_remove_comment")
+     */
+    public function removeComment($id)
+    {
+        try {
+            $user = $this->getUser();
+            $comment = $this->manager->getRepository(Comments::class)->find($id);
+            $videoId = $comment->getVideo()->getId();
+            if ($comment->getUser() == $user) {
+                $this->manager->remove($comment);
+                $this->manager->flush();
+
+                return $this->redirectToRoute('app_single_video', ['id' => $videoId]);
+            } else {
+                return $this->redirectToRoute('app_home');
+            }
+        } catch (\Throwable $th) {
+            return $this->redirectToRoute('app_home');
+        }
+    }
 }

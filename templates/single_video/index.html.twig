@@ -29,28 +29,58 @@
 				<p>{{video.description}}</p>
 			</div>
 
-			<div class="comments d-flex">
-				{{form_start(commentForm)}}
-				{{ form_errors(commentForm) }}
+
+			{{form_start(commentForm)}}
+			<div class="commentInput">
 				{{form_row(commentForm.content)}}
-				<div class="btn-form">
-					{{form_row(commentForm.submit)}}
-				</div>
-				{{form_end(commentForm)}}
 			</div>
+			<div class="d-flex justify-content-end">
+				{{form_row(commentForm.submit)}}
+			</div>
+
+			{{form_end(commentForm)}}
+
 			<div class="d-flex flex-column">
 				{% for comment in video.comments %}
 					<div class="d-flex mb-4">
-						<div class="imgAvatarComment">
-							<a href="{{path('app_profil', {'id': comment.user.id})}}"><img src="{{ asset('uploads/pictures/' ~ comment.user.avatar)}}" alt="" class="avatarVideo"></a>
-						</div>
-						<div class="d-flex flex-column">
-							<div class="d-flex">
-								<a href="{{path('app_profil', {'id': comment.user.id})}}" class="pseudoLink ">{{comment.user.pseudo}}</a>
-								<p class="card-text date dateComment" id="date-{{comment.id}}">{{comment.createdAt|date('d/m/Y H:i')}}</p>
+						<div class="d-flex containerComment">
+							<div class="imgAvatarComment">
+								<a href="{{path('app_profil', {'id': comment.user.id})}}"><img src="{{ asset('uploads/pictures/' ~ comment.user.avatar)}}" alt="" class="avatarVideo"></a>
 							</div>
-							<p>{{comment.content}}</p>
+							<div class="">
+								<div class="d-flex flex-column">
+									<div class="d-flex">
+										<a href="{{path('app_profil', {'id': comment.user.id})}}" class="pseudoLink ">{{comment.user.pseudo}}</a>
+										<p class="card-text date dateComment" id="date-{{comment.id}}">{{comment.createdAt|date('d/m/Y H:i')}}</p>
+									</div>
+									<p>{{comment.content}}</p>
+								</div>
+							</div>
 						</div>
+						{% if app.user.id == comment.user.id %}
+							<div style="position: relative;">
+								<button type="button" class="removeComment" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+
+								<!-- Modal -->
+								<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h1 class="modal-title fs-5" id="exampleModalLabel">Suppression du commentaire</h1>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body">
+												Voulez vous vraiment supprimer votre commentaire ?
+											</div>
+											<div class="modal-footer">
+												<a href="{{path('app_remove_comment', {'id': comment.id})}}" class="btn btn-red">Supprimer</a>
+												<button type="button" class="btn btn-primary btn-dismiss">Annuler</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endif %}
 					</div>
 				{% endfor %}
 			</div>
@@ -77,4 +107,6 @@
 			{% endfor %}
 		</div>
 	</div>
+
+
 {% endblock %}

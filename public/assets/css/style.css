@@ -328,6 +328,41 @@ section {
     font-weight: 100;
 }
 
+.containerComment {
+    width: 100%;
+}
+
+.removeComment {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.3;
+    border: none;
+}
+
+.removeComment:hover {
+    opacity: 1;
+}
+
+.removeComment:before, .removeComment:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #e40202;
+}
+
+.removeComment:before {
+    transform: rotate(45deg);
+}
+
+.removeComment:after {
+    transform: rotate(-45deg);
+}
+
 @media screen and (max-width: 732px) {
     * {
         color: red !important;
