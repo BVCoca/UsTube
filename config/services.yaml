@@ -7,6 +7,7 @@ parameters:
     pictures_directory: '%kernel.project_dir%/public/uploads/pictures'
     pictures_video_directory: '%kernel.project_dir%/public/uploads/videos/pictures'
     videos_directory: '%kernel.project_dir%/public/uploads/videos/srcVideos'
+    timezone: '%env(APP_TIMEZONE)%'
 services:
     # default configuration for services in *this* file
     _defaults:

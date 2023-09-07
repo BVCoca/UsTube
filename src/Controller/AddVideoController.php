@@ -36,6 +36,7 @@ class AddVideoController extends AbstractController
             try {
 
                 $video->setCreatedAt(new \DateTime());
+
                 $user = $this->getUser();
                 $video->setUser($user);
 
