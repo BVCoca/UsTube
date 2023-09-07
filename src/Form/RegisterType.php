@@ -53,7 +53,7 @@ class RegisterType extends AbstractType
                 ]
             ])
             ->add('avatar', FileType::class, array(
-                'label' => false,
+                'label' => 'Avatar',
                 'required'   => false,
             ))
             ->add('pseudo', TextType::class, [
