@@ -1,21 +1,45 @@
-version: '3'
-
+version: "3.8"
 services:
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-15}-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
-    volumes:
-      - database_data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+    db:
+        image: mysql
+        container_name: db_ustube
+        restart: always
+        volumes:
+            - db-data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: "$DB_PASSWORD"
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+            MYSQL_DATABASE: 'ustube'
+        networks:
+            - ustube
+
+    phpmyadmin:
+        image: phpmyadmin
+        container_name: phpmyadmin_ustube
+        restart: always
+        depends_on:
+            - db
+        ports:
+            - "$PMA_PORT:80"
+        environment:
+            PMA_HOST: db
+        networks:
+            - ustube
+
+    php:
+        build: php
+        container_name: php_ustube
+        ports:
+          - "$PHP_PORT:80"
+        volumes:
+            - ./php/vhosts:/etc/apache2/sites-enabled
+            - ./:/var/www/ustube
+        restart: always
+        networks:
+            - ustube
+
+networks:
+    ustube:
 
 volumes:
-###> doctrine/doctrine-bundle ###
-  database_data:
-###< doctrine/doctrine-bundle ###
+    db-data:
