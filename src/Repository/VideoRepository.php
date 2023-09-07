@@ -41,7 +41,7 @@ class VideoRepository extends ServiceEntityRepository
         }
     }
 
-    public function findRandom(int $batchSize = 5): array
+    public function findRandom(int $batchSize = 10): array
     {
 
         $ids = $this->createQueryBuilder('v')

@@ -246,7 +246,8 @@ section {
 }
 
 .videoDetail {
-    width: 50%;
+    width: 65%;
+    margin-right: 25px;
 }
 
 .card .card-img-top{
@@ -287,6 +288,32 @@ section {
     background-color: #d3d2d2;
     padding: 10px;
     border-radius: 10px;
+}
+
+.cardTitleVideoList {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.cardVideoList {
+    height: 150px;
+    margin-bottom: 25px;
+}
+
+.cardImgVideoList {
+    width: 60%;
+}
+
+.imgVideoList {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+
+.cardBodyVideoList {
+    width: 40%;
+    padding-left: 15px;
 }
 
 @media screen and (max-width: 732px) {

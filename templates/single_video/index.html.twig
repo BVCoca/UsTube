@@ -32,13 +32,22 @@
 
 		<div class="videoList">
 			{% for randomVideo in randomVideos %}
-				<a href="{{path('app_single_video', {'id': video.id})}}">
-					<div class="d-flex imgAvatarVideo">
-						<img src="{{ asset('uploads/videos/pictures/' ~ randomVideo.image)}}" alt="" class="avatarVideo">
-						<p>{{randomVideo.title}}</p>
-						{{randomVideo.user.id}}
+
+				<div class="d-flex cardVideoList cardHover" onclick="window.location='{{path('app_single_video', {'id': randomVideo.id})}}'" style="cursor: pointer;">
+					<div class="cardImgVideoList cardHover" style="border-radius: 15px;">
+						<img src="{{ asset('uploads/videos/pictures/' ~ randomVideo.image)}}" alt="" class="imgVideoList card-img-top ">
 					</div>
-				</a>
+					<div class="d-flex flex-column cardBodyVideoList">
+						<p class="card-title mb-2 cardTitleVideoList">{{randomVideo.title}}</p>
+						<div>
+							<a href="{{path('app_profil', {'id': randomVideo.user.id})}}" class="pseudoLink">
+								{{randomVideo.user.pseudo}}
+							</a>
+							<p class="card-text date" id="date-{{randomVideo.id}}">{{randomVideo.createdAt|date('d/m/Y H:i')}}</p>
+						</div>
+					</div>
+				</div>
+
 			{% endfor %}
 		</div>
 	</div>
