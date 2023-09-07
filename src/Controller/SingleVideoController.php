@@ -39,7 +39,6 @@ class SingleVideoController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             try {
                 $comments->setCreatedAt(new \DateTime('now'));
                 $comments->setUser($user);
@@ -47,6 +46,9 @@ class SingleVideoController extends AbstractController
 
                 $this->manager->persist($comments);
                 $this->manager->flush();
+
+                $comments = new Comments();
+                $form = $this->createForm(CommentType::class, $comments);
             } catch (\Exception $e) {
                 $this->addFlash('danger', 'Erreur lors de l\'envoie du commentaire.');
                 $e->getMessage();

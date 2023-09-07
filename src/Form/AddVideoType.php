@@ -17,7 +17,7 @@ class AddVideoType extends AbstractType
     {
         $builder
             ->add('path_video', FileType::class, array(
-                'label' => 'Vidéo',
+                'label' => 'Fichier Vidéo',
             ))
             ->add('title', TextType::class, array(
                 'label' => 'Titre',
