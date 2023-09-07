@@ -316,6 +316,18 @@ section {
     padding-left: 15px;
 }
 
+.imgAvatarComment {
+    width: 5%;
+}
+
+.dateComment {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    font-size: 0.8rem;
+    font-weight: 100;
+}
+
 @media screen and (max-width: 732px) {
     * {
         color: red !important;

@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Video;
+use App\Entity\Comments;
+use App\Form\CommentType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,11 +24,36 @@ class SingleVideoController extends AbstractController
     /**
      * @Route("/single/video/{id}", name="app_single_video")
      */
-    public function index(int $id): Response
+    public function index(int $id, Request $request): Response
     {
+        $comments = new Comments();
+        $user = $this->getUser();
+
         $video = $this->manager->getRepository(Video::class)->find($id);
 
         $randomVideos = $this->manager->getRepository(Video::class)->findRandom();
+
+        $form = $this->createForm(CommentType::class, $comments);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            try {
+                $comments->setCreatedAt(new \DateTime('now'));
+                $comments->setUser($user);
+                $comments->setVideo($video);
+
+                $this->manager->persist($comments);
+                $this->manager->flush();
+            } catch (\Exception $e) {
+                $this->addFlash('danger', 'Erreur lors de l\'envoie du commentaire.');
+                $e->getMessage();
+            }
+        }
+
+
 
         if (!$video) {
             throw $this->createNotFoundException(
@@ -35,7 +63,8 @@ class SingleVideoController extends AbstractController
         return $this->render('single_video/index.html.twig', [
             'controller_name' => 'SingleVideoController',
             'video' => $video,
-            'randomVideos' => $randomVideos
+            'randomVideos' => $randomVideos,
+            'commentForm' => $form->createView(),
         ]);
     }
 }

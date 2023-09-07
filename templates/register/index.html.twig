@@ -12,28 +12,30 @@
 				{{ message[0] }}
 			</div>
 		{% endfor %}
-		{{ form_errors(form) }}
+
 		<div class="field-form">
-			<div class="input-container">
-				{{form_widget(form.email)}}
-				{{form_label(form.email, null, {'label_attr': {'class': 'floating-labelEmail'}}) }}
+			<div class="field-form">
+				<div class="input-container">
+					{{form_widget(form.email)}}
+					{{form_label(form.email, null, {'label_attr': {'class': 'floating-labelEmail'}}) }}
+				</div>
+				<div class="input-container">
+					{{ form_widget(form.password.first, {'attr': {'class': 'inputPassword'}}) }}
+					{{ form_label(form.password.first, null, {'label_attr': {'class': 'floating-labelPassword'}}) }}
+				</div>
+				<div class="input-container">
+					{{ form_widget(form.password.second, {'attr': {'class': 'inputPassword'}}) }}
+					{{ form_label(form.password.second, null, {'label_attr': {'class': 'floating-labelPassword'}}) }}
+				</div>
+				<div class="input-container">
+					{{ form_widget(form.pseudo, {'attr': {'class': 'inputPseudo'}}) }}
+					{{ form_label(form.pseudo, null, {'label_attr': {'class': 'floating-labelPseudo'}}) }}
+				</div>
+				{{form_row(form.avatar)}}
 			</div>
-			<div class="input-container">
-				{{ form_widget(form.password.first, {'attr': {'class': 'inputPassword'}}) }}
-				{{ form_label(form.password.first, null, {'label_attr': {'class': 'floating-labelPassword'}}) }}
+			<div class="btn-form">
+				{{form_row(form.submit)}}
 			</div>
-			<div class="input-container">
-				{{ form_widget(form.password.second, {'attr': {'class': 'inputPassword'}}) }}
-				{{ form_label(form.password.second, null, {'label_attr': {'class': 'floating-labelPassword'}}) }}
-			</div>
-			<div class="input-container">
-				{{ form_widget(form.pseudo, {'attr': {'class': 'inputPseudo'}}) }}
-				{{ form_label(form.pseudo, null, {'label_attr': {'class': 'floating-labelPseudo'}}) }}
-			</div>
-			{{form_row(form.avatar)}}
-		</div>
-		<div class="btn-form">
-			{{form_row(form.submit)}}
 		</div>
 		{{form_end(form)}}
 	</section>

@@ -17,16 +17,29 @@
 
 		{{form_start(addVideoForm)}}
 		<div class="field-form">
-			{{form_row(addVideoForm.title)}}
-			{{form_row(addVideoForm.path_video)}}
-			{{form_row(addVideoForm.description)}}
-			{{form_row(addVideoForm.image)}}
-		</div>
-		<div class="btn-form">
-			{{form_row(addVideoForm.submit)}}
-		</div>
-		{{form_end(addVideoForm)}}
-	</section>
+			<div class="field-form">
+				<div class="input-container">
+					{{form_widget(addVideoForm.title)}}
+					{{form_label(addVideoForm.title, null, {'label_attr': {'class': 'floating-labelEmail'}}) }}
+				</div>
+				<div class="input-container">
+					{{ form_widget(addVideoForm.description, {'attr': {'class': 'inputPassword'}}) }}
+					{{ form_label(addVideoForm.description, null, {'label_attr': {'class': 'floating-labelPassword'}}) }}
+				</div>
+				<div class="input-container">
+					{{form_row(addVideoForm.path_video)}}
+				</div>
+				<div class="input-container">
+					{{form_row(addVideoForm.image)}}
+				</div>
+
+			</div>
+
+			<div class="btn-form">
+				{{form_row(addVideoForm.submit)}}
+			</div>
+			{{form_end(addVideoForm)}}
+		</section>
 
 
-{% endblock %}
+	{% endblock %}

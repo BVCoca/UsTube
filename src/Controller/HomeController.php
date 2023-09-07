@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Video;
 use App\Entity\Comments;
+use App\Form\CommentType;
+use App\Form\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,14 +23,8 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="app_home")
      */
-    public function index(Request $request): Response
+    public function index(): Response
     {
-
-        $comments = new Comments();
-        $form = $this->createForm(RegisterType::class, $comments);
-
-        $form->handleRequest($request);
-
         $videos = $this->manager->getRepository(Video::class)->findAll();
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
