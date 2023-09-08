@@ -1,20 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}Hello AdminController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<h2>Bienvenue sur le Dashboard !</h2>
+	<p>{{app.user.pseudo}}</p>
+	<!-- Sidenav -->
+	<nav id="sidenav-1" class="sidenav" data-mdb-hidden="false">
+		<ul class="sidenav-menu">
+			<li class="sidenav-item">
+				<a class="sidenav-link">
+					<i class="far fa-smile fa-fw me-3"></i>
+					<span>Link 1</span>
+				</a>
+			</li>
+			<li class="sidenav-item">
+				<a class="sidenav-link">
+					<i class="fas fa-grin fa-fw me-3"></i>
+					<span>Category 1</span>
+				</a>
+				<ul class="sidenav-collapse show">
+					<li class="sidenav-item">
+						<a class="sidenav-link">Link 2</a>
+					</li>
+					<li class="sidenav-item">
+						<a class="sidenav-link">Link 3</a>
+					</li>
+				</ul>
+			</li>
+			<li class="sidenav-item">
+				<a class="sidenav-link">
+					<i class="fas fa-grin-wink fa-fw me-3"></i>
+					<span>Category
+						          2</span>
+				</a>
+				<ul class="sidenav-collapse">
+					<li class="sidenav-item">
+						<a class="sidenav-link">Link 4</a>
+					</li>
+					<li class="sidenav-item">
+						<a class="sidenav-link">Link 5</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+	<!-- Sidenav -->
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	<!-- Toggler -->
+	<button data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1" class="btn btn-primary" aria-controls="#sidenav-1" aria-haspopup="true">
+		<i class="fas fa-bars"></i>
+	</button>
+	<!-- Toggler -->
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/VAIQU/Desktop/Document Formation/Symfony/Projet Perso/UsTube/src/Controller/AdminController.php'|file_link(0) }}">src/Controller/AdminController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/VAIQU/Desktop/Document Formation/Symfony/Projet Perso/UsTube/templates/admin/index.html.twig'|file_link(0) }}">templates/admin/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}
