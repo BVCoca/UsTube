@@ -4,29 +4,20 @@
 {% endblock %}
 
 {% block body %}
-	<h2>Bienvenue sur le Dashboard !</h2>
-	<p>{{app.user.pseudo}}</p>
-
-
-	<div id="mySidenav" class="sidenav">
-		<a id="closeBtnDashboard" href="#" class="close">
+	<!-- NavbarDashboard -->
+	<a href="#" id="openBtnDashboard" class="menuBurgerDashboard">
+		<i class="fa-solid fa-list"></i>
+	</a>
+	<div id="mySidenavDashboard" class="sidenavDashboard">
+		<a id="closeBtnDashboard" href="#" class="closeDashboard">
 			<i class="fa-solid fa-xmark"></i>
 		</a>
 		<div>
-			<a href="{{path('app_profil', {'id':app.user.id})}}">
-				{% if app.user.avatar %}
-					<img id="avatarBtn" src="{{ asset('uploads/pictures/' ~ app.user.avatar) }}" alt="">
-				{% else %}
-					<img id="avatarBtn" src="{{ asset('assets/images/profil.png')}}" alt="">
-				{% endif %}<br>Profil</a>
-			<a href="{{path('app_add_video')}}">Mettre<br>en ligne<br>une vidéo</a>
-			{% if is_granted('ROLE_ADMIN') %}
-				<a href="{{path('app_admin')}}">Dashboard</a>
-			{% endif %}
-
-			<a href="{{path('app_logout')}}">Se déconnecter</a>
+			<a href="{{path('app_add_video')}}">Vidéos</a>
 		</div>
 	</div>
+	<!-- Fin NavbarDashboard -->
 
-	<a href="#" id="openBtnDashboard">Open</a>
-</div>{% endblock %}
+	{% include "admin/welcome.html.twig" %}
+
+{% endblock %}

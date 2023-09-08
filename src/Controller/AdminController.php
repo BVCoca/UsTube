@@ -28,4 +28,12 @@ class AdminController extends AbstractController
             'videos' => $videos,
         ]);
     }
+
+    #[Route('/admin', name: 'app_admin')]
+    public function showVideos(): Response
+    {
+        return $this->render('admin/index.html.twig', [
+            'controller_name' => 'AdminController',
+        ]);
+    }
 }

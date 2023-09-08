@@ -287,6 +287,15 @@ section {
     transform: rotate(-45deg);
 }
 
+.pseudoDashboard {
+    font-size: 2rem;
+    color: #345d86;
+}
+
+.pseudoDashboard:hover {
+    color: #2e3e4e;
+}
+
 @media screen and (max-width: 732px) {
     * {
         color: red !important;

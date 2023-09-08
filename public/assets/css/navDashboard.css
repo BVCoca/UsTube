@@ -1,0 +1,85 @@
+/* Sidenav menu */
+.sidenavDashboard {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: -250px;
+    background-color: #e8e8e8;
+    padding-top: 60px;
+    transition: left 0.5s ease;
+    overflow: hidden;
+}
+
+/* Sidenav menu links */
+.sidenavDashboard a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #55A5C4;
+    display: block;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.sidenavDashboard img {
+    width: 50px;
+}
+
+.sidenavDashboard a:hover {
+    color: #3e788f;
+    background-color: #f3f3f3;
+    scale: 1.1;
+}
+
+.sidenavDashboard ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Active class */
+.activeDashboard {
+    left: 0;
+}
+
+/* Close btn */
+.closeDashboard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 36px;
+    padding: 8px 8px 8px 8px;
+    
+}
+
+.close:hover {
+    background-color: #e8e8e8;
+}
+
+.menuBurgerDashboard {
+    margin-left: 5px;
+    color: #55A5C4;
+    font-size: 2rem;
+}
+
+/* Icône burger */
+.burger-icon span {
+    display: block;
+    width: 35px;
+    height: 5px;
+    background-color: #55A5C4;
+    margin: 6px 0;
+}
+
+#avatarBtn{
+    width: 42px;
+    height: 42px;
+    object-fit:fill;
+    border-radius: 100%;
+}
+
+#avatarBtn:active {
+    outline: 2px solid #55A5C4;
+}

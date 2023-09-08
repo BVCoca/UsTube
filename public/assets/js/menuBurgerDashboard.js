@@ -1,14 +1,14 @@
-const sideNav = document.getElementById("mySidenavDashboard");
-const closeBtn = document.getElementById("closeBtnDashboard");
-const openBtn = document.getElementById("openBtnDashboard");
+const sideNavDashboard = document.getElementById("mySidenavDashboard");
+const closeBtnDashboard = document.getElementById("closeBtnDashboard");
+const openBtnDashboard = document.getElementById("openBtnDashboard");
 
-openBtn.onclick = openNav;
-closeBtn.onclick = closeNav;
+openBtnDashboard.onclick = openNavDashboard;
+closeBtnDashboard.onclick = closeNavDashboard;
 
-function openNav() {
-  sideNav.classList.add("active");
+function openNavDashboard() {
+  sideNavDashboard.classList.add("activeDashboard");
 }
 
-function closeNav() {
-  sideNav.classList.remove("active");
+function closeNavDashboard() {
+  sideNavDashboard.classList.remove("activeDashboard");
 }
