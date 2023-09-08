@@ -30,6 +30,10 @@
 							<img id="avatarBtn" src="{{ asset('assets/images/profil.png')}}" alt="">
 						{% endif %}<br>Profil</a>
 					<a href="{{path('app_add_video')}}">Mettre<br>en ligne<br>une vidéo</a>
+					{% if is_granted('ROLE_ADMIN') %}
+						<a href="{{path('app_admin')}}">Dashboard</a>
+					{% endif %}
+
 					<a href="{{path('app_logout')}}">Se déconnecter</a>
 				</div>
 			</div>
