@@ -84,6 +84,10 @@
     width: 100%;
 }
 
+.commentLabel {
+    margin-left: 9px;
+}
+
 .commentInput textarea {
     width: 100%;
     padding: 0.375rem 0.75rem;
@@ -93,7 +97,6 @@
 .searchBarForm {
     display: flex;
     align-items: center;
-
 }
 
 .alert {
@@ -104,11 +107,3 @@
     border-radius: 10px;
     color: rgb(22, 22, 22);
 }
-
-/* .alert-danger {
-    background-color: rgba(199, 51, 51, 0.822);
-}
-
-.alert-success {
-    background-color: rgba(51, 199, 71, 0.822);
-} */

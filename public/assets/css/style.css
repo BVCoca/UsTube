@@ -343,6 +343,7 @@ section {
     height: 32px;
     opacity: 0.5;
     border: none;
+    background: none;
 }
 
 .removeComment:hover {
