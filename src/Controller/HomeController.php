@@ -41,6 +41,10 @@ class HomeController extends AbstractController
 
         $title = $request->request->get('search');
         $videos = $this->manager->getRepository(Video::class)->searchByTitle($title);
+        if ($videos == null) {
+            $this->addFlash('secondary', 'Aucunes vidéos n\'a été trouvée.');
+        }
+
 
 
         return $this->render('home/search.html.twig', [

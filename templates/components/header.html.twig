@@ -19,7 +19,9 @@
 
 		{% if app.user %}
 			<div id="mySidenav" class="sidenav">
-				<a id="closeBtn" href="#" class="close">x</a>
+				<a id="closeBtn" href="#" class="close">
+					<i class="fa-solid fa-xmark"></i>
+				</a>
 				<div>
 					<a href="{{path('app_profil', {'id':app.user.id})}}">
 						{% if app.user.avatar %}

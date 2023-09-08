@@ -5,6 +5,13 @@
 {% endblock %}
 {% block body %}
 	<div class="allVideos">
+
+		{% for label,message in app.flashes %}
+			<div class="alert alert-{{label}}">
+				{{ message[0] }}
+			</div>
+		{% endfor %}
+
 		{% for video in videos %}
 			<div class="card cardHover" onclick="window.location='{{path('app_single_video', {'id': video.id})}}'" style="cursor: pointer; width: 20%;" tabindex="1">
 
