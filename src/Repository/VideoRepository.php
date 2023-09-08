@@ -73,6 +73,15 @@ class VideoRepository extends ServiceEntityRepository
         return $videos;
     }
 
+    public function searchByTitle(string $title): array
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('v.title LIKE :title')
+            ->setParameter('title', '%' . $title . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
 
 
     //    /**

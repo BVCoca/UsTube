@@ -48,7 +48,6 @@ h1 {
 .searchBar {
     display: flex;
     align-items: center;
-    width: 35%;
 }
 
 .searchBar label {
@@ -75,7 +74,7 @@ h1 {
     border-radius: 10px 0 0 10px;
     background-color: rgba(255, 255, 255, 0);
     outline: none;
-    width: 100%;
+    width: 25rem;
 }
 
 .searchBar input[type=text]::placeholder{
@@ -276,7 +275,7 @@ section {
     padding: 15px;
 }
 
-.AllVideos {
+.allVideos {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

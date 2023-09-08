@@ -90,6 +90,12 @@
     border-radius: 5px;
 }
 
+.searchBarForm {
+    display: flex;
+    align-items: center;
+
+}
+
 .alert {
     display: flex;
     justify-content: center;

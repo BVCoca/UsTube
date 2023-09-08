@@ -20,6 +20,7 @@ class HomeController extends AbstractController
     {
         $this->manager = $manager;
     }
+
     /**
      * @Route("/", name="app_home")
      */
@@ -29,6 +30,22 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'videos' => $videos,
+        ]);
+    }
+
+    /**
+     * @Route("/search", name="app_search")
+     */
+    public function search(Request $request): Response
+    {
+
+        $title = $request->request->get('search');
+        $videos = $this->manager->getRepository(Video::class)->searchByTitle($title);
+
+
+        return $this->render('home/search.html.twig', [
+            'videos' => $videos,
+            'title' => $title
         ]);
     }
 }

@@ -9,10 +9,12 @@
 		<div
 			class="searchBar">
 			<!-- <label for="search">Rechercher :</label> -->
-			<input type="text" name="search" placeholder="Rechercher">
-			<button type="submit">
-				<i class="fa-solid fa-magnifying-glass"></i>
-			</button>
+			<form method="POST" action="{{ path('app_search') }}" class="searchBarForm">
+				<input type="text" name="search" placeholder="Rechercher">
+				<button type="submit">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</button>
+			</form>
 		</div>
 
 		{% if app.user %}
