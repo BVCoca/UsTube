@@ -305,6 +305,61 @@ section {
     border-radius: 100%;
 }
 
+.titleVideosProfil {
+    cursor: pointer;
+    border: 1px solid #55A5C4;
+    border-bottom: none;
+    width: 73px;
+    padding: 5px;
+    border-top-right-radius: 10px;
+}
+
+.titleVideosProfil:hover, .titleCommentsProfil:hover {
+    background-color: rgb(233, 233, 233);
+}
+
+.titleCommentsProfil {
+    cursor: pointer;
+    border: 1px solid #55A5C4;
+    border-bottom: none;
+    border-left: none;
+    width: 150px;
+    padding: 5px 10px ;
+    border-top-right-radius: 10px;
+    position: absolute;
+    left: 90px;
+}
+
+.containerProfil {
+    position: relative;
+}
+
+.commentsProfil {
+    position: absolute;
+    top: 60px;
+    left : 25px
+}
+
+.activeTab {
+    display: block!important;
+}
+
+.notActiveTab {
+    display: none !important;
+}
+
+.miniatureProfil {
+    height: 200px;
+}
+
+.miniatureProfil img {
+    width: 200px;
+}
+
+.containerVideoProfil {
+    margin-left: 0;
+}
+
 @media screen and (max-width: 732px) {
     * {
         color: red !important;

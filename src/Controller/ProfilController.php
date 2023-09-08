@@ -33,6 +33,7 @@ class ProfilController extends AbstractController
 
         // Utilisez cette information pour personnaliser le titre de la page
         $pageTitle = $isCurrentUserProfile ? 'Votre Profil | UsTube' : $profileUser->getPseudo() . ' | UsTube';
+
         return $this->render('profil/index.html.twig', [
             'profileUser' => $profileUser,
             'pageTitle' => $pageTitle,
