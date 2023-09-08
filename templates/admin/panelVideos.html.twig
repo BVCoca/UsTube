@@ -25,7 +25,8 @@
 								<a href="{{path('app_single_video', {'id': video.id})}}"><img src="{{ asset('uploads/videos/pictures/' ~ video.image) }}" alt="" class="w-50"></a>
 							</td>
 							<td>{{video.title}}</td>
-							<td>{{video.description| slice(0,100) }}</td>
+							<td>{{video.description| slice(0,100) }}
+								...</td>
 							<td>
 								<a href="{{path('app_profil', {'id': video.user.id})}}" class="pseudoLink">
 									{{video.user.pseudo}}</a>

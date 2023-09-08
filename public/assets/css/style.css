@@ -296,6 +296,15 @@ section {
     color: #2e3e4e;
 }
 
+.avatarProfilContainer {
+    width: 10%;
+}
+
+.avatarProfil {
+    width: 100%;
+    border-radius: 100%;
+}
+
 @media screen and (max-width: 732px) {
     * {
         color: red !important;

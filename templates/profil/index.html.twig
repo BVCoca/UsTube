@@ -6,14 +6,35 @@
 
 {% block body %}
 	{% if app.user == profileUser %}
-		<h2>Bonjour,{{profileUser.pseudo}}
-		</h2>
+		<div class="d-flex flex-column align-items-center">
+			<h2 class="text-center mt-4 mb-4">
+				{{profileUser.pseudo}}
+			</h2>
+			<div class="d-flex justify-content-center avatarProfilContainer">
+				<img src="{{ asset('uploads/pictures/' ~ app.user.avatar) }}" alt="" class="avatarProfil">
+			</div>
+
+			<div class="card" style="width: 22rem;">
+				<div class="card-body">
+					<h5 class="card-title mb-4">Vos informations :</h5>
+					<p class="card-subtitle mb-2 text-body-secondary ms-5">Pseudo :
+						{{app.user.pseudo}}</p>
+					<p class="card-subtitle mb-2 text-body-secondary ms-5">Adresse mail :
+						{{app.user.email}}</p>
+					<p class="card-subtitle mb-2 text-body-secondary ms-5">Créé le :
+						{{app.user.createdAt | date('d/m/y')}}</p>
+				</div>
+			</div>
+		</div>
 	{% else %}
-		<h2>Profil de
-			{{profileUser.pseudo}}</h2>
+		<div class="d-flex flex-column align-items-center">
+			<h2 class="text-center mt-4 mb-4">
+				{{profileUser.pseudo}}
+			</h2>
+			<div class="d-flex justify-content-center avatarProfilContainer">
+				<img src="{{ asset('uploads/pictures/' ~ profileUser.avatar) }}" alt="" class="avatarProfil">
+			</div>
+		</div>
 	{% endif %}
-
-
-	{{profileUser.email}}
 
 {% endblock %}
