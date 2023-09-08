@@ -4,20 +4,14 @@
 {% endblock %}
 
 {% block body %}
-	<!-- NavbarDashboard -->
-	<a href="#" id="openBtnDashboard" class="menuBurgerDashboard">
-		<i class="fa-solid fa-list"></i>
-	</a>
-	<div id="mySidenavDashboard" class="sidenavDashboard">
-		<a id="closeBtnDashboard" href="#" class="closeDashboard">
-			<i class="fa-solid fa-xmark"></i>
-		</a>
-		<div>
-			<a href="{{path('app_add_video')}}">Vidéos</a>
-		</div>
-	</div>
-	<!-- Fin NavbarDashboard -->
 
-	{% include "admin/welcome.html.twig" %}
+	{% include "admin/menuDashboard.html.twig" %}
+	<div class="d-flex align-items-center flex-column">
+		<h2 class="text-center">Bienvenue
+			<a href="{{path('app_profil', {'id':app.user.id})}}" class="pseudoDashboard">{{app.user.pseudo}}</a>
+			<br>
+			sur le Dashboard !
+		</h2>
+	</div>
 
 {% endblock %}

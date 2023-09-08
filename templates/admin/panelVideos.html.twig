@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!
+{% endblock %}
+
+{% block body %}
+	{% include "admin/menuDashboard.html.twig" %}
+	<div class="d-flex justify-content-center">
+		<div class="w-50">
+			<h2 class="text-center mt-4 mb-4">Panel Vidéos</h2>
+			<table class="table">
+				<thead>
+					<tr class="text-center">
+						<th scope="col">Miniature</th>
+						<th scope="col">Titre</th>
+						<th scope="col">Description</th>
+						<th scope="col">Publiée par</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for video in videos %}
+						<tr class="text-center">
+							<td>
+								<a href="{{path('app_single_video', {'id': video.id})}}"><img src="{{ asset('uploads/videos/pictures/' ~ video.image) }}" alt="" class="w-50"></a>
+							</td>
+							<td>{{video.title}}</td>
+							<td>{{video.description| slice(0,100) }}</td>
+							<td>
+								<a href="{{path('app_profil', {'id': video.user.id})}}" class="pseudoLink">
+									{{video.user.pseudo}}</a>
+							</td>
+							<td>
+								<div class="dropdown">
+									<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Actions
+									</button>
+									<ul class="dropdown-menu">
+										<li>
+											<a class="dropdown-item" href="#">Modifier</a>
+										</li>
+										<li>
+											<a class="dropdown-item" href="#">Supprimer</a>
+										</li>
+									</ul>
+								</div>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

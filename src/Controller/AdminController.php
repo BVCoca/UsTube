@@ -20,20 +20,20 @@ class AdminController extends AbstractController
     #[Route('/admin', name: 'app_admin')]
     public function index(): Response
     {
-        $user = $this->getUser();
-        $videos = $this->manager->getRepository(Video::class)->findAll();
 
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
-            'videos' => $videos,
         ]);
     }
 
-    #[Route('/admin', name: 'app_admin')]
-    public function showVideos(): Response
+    #[Route('/admin/panel', name: 'app_panel_videos')]
+    public function panelVideos(): Response
     {
-        return $this->render('admin/index.html.twig', [
+        $videos = $this->manager->getRepository(Video::class)->findAll();
+
+        return $this->render('admin/panelVideos.html.twig', [
             'controller_name' => 'AdminController',
+            'videos' => $videos,
         ]);
     }
 }
