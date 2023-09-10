@@ -17,7 +17,9 @@ class AdminController extends AbstractController
         $this->manager = $manager;
     }
 
-    #[Route('/admin', name: 'app_admin')]
+    /**
+     * @Route("/admin", name="app_admin")
+     */
     public function index(): Response
     {
 
@@ -26,7 +28,9 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/panel', name: 'app_panel_videos')]
+    /**
+     * @Route("/admin/panel_videos", name="app_panel_videos")
+     */
     public function panelVideos(): Response
     {
         $videos = $this->manager->getRepository(Video::class)->findAll();
