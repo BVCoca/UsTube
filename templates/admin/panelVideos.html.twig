@@ -24,14 +24,14 @@
 							<td>
 								<a href="{{path('app_single_video', {'id': video.id})}}"><img src="{{ asset('uploads/videos/pictures/' ~ video.image) }}" alt="" class="w-50"></a>
 							</td>
-							<td>{{video.title}}</td>
-							<td>{{video.description| slice(0,100) }}
+							<td class="tdCenter">{{video.title}}</td>
+							<td class="tdCenter">{{video.description| slice(0,100) }}
 								...</td>
-							<td>
+							<td class="tdCenter">
 								<a href="{{path('app_profil', {'id': video.user.id})}}" class="pseudoLink">
 									{{video.user.pseudo}}</a>
 							</td>
-							<td>
+							<td class="tdCenter">
 								<div class="dropdown">
 									<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 										Actions
