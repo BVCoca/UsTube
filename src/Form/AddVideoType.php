@@ -18,6 +18,8 @@ class AddVideoType extends AbstractType
         $builder
             ->add('path_video', FileType::class, array(
                 'label' => 'Fichier Vidéo',
+                'data_class' => null,
+                'mapped' => false,
             ))
             ->add('title', TextType::class, array(
                 'label' => 'Titre',
@@ -28,6 +30,8 @@ class AddVideoType extends AbstractType
             ))
             ->add('image', FileType::class, array(
                 'label' => 'Miniature',
+                'data_class' => null,
+                'mapped' => false,
             ))
             ->add('submit', SubmitType::class, array(
                 'label' => 'Mettre en ligne',

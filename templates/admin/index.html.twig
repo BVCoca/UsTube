@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!
+{% block title %}Accueil Dashboard | UsTube
 {% endblock %}
 
 {% block body %}
@@ -12,6 +12,14 @@
 			<br>
 			sur le Dashboard !
 		</h2>
+	</div>
+
+	<div class="container w-25 mt-4">
+		{% for label,message in app.flashes %}
+			<div class="alert alert-{{label}}">
+				{{ message[0] }}
+			</div>
+		{% endfor %}
 	</div>
 
 {% endblock %}

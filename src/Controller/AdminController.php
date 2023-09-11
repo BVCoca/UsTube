@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Video;
+use App\Form\AddVideoType;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,10 +14,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminController extends AbstractController
 {
     private $manager;
+    private $fileUploader;
 
-    public function __construct(EntityManagerInterface $manager)
+    public function __construct(EntityManagerInterface $manager, FileUploader $fileUploader)
     {
         $this->manager = $manager;
+        $this->fileUploader = $fileUploader;
     }
 
     /**
@@ -38,6 +43,82 @@ class AdminController extends AbstractController
         return $this->render('admin/panelVideos.html.twig', [
             'controller_name' => 'AdminController',
             'videos' => $videos,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/remove/video/{id}", name="app_remove_video")
+     */
+    public function removeVideo($id)
+    {
+        $video = $this->manager->getRepository(Video::class)->find($id);
+
+        $oldVideoPath = $video->getPathVideo();
+        $oldImagePath = $video->getImage();
+
+        if (file_exists($this->getParameter('videos_directory') . '/' . $oldVideoPath)) {
+            unlink($this->getParameter('videos_directory') . '/' . $oldVideoPath);
+        }
+
+        if (file_exists($this->getParameter('pictures_video_directory') . '/' . $oldImagePath)) {
+            unlink($this->getParameter('pictures_video_directory') . '/' . $oldImagePath);
+        }
+
+        $this->manager->remove($video);
+        $this->manager->flush();
+        $this->addFlash('success', 'Vidéo supprimée avec succès');
+        return $this->redirectToRoute('app_admin');
+    }
+
+    /**
+     * @Route("/admin/edit/video/{id}", name="app_edit_video")
+     */
+    public function editVideo($id, Request $request): Response
+    {
+        $video = $this->manager->getRepository(video::class)->find($id);
+
+        $oldVideoPath = $video->getPathVideo();
+        $oldImagePath = $video->getImage();
+
+        $form = $this->createForm(AddVideoType::class, $video);
+        $form->handleRequest($request);
+
+
+
+        if ($form->isSubmitted()  && $form->isValid()) {
+
+            $currentVideo = $form->get('path_video')->getData();
+            $currentImage = $form->get('image')->getData();
+
+
+            if ($currentVideo) {
+                $video->setPathVideo($currentVideo);
+                if (file_exists($this->getParameter('videos_directory') . '/' . $oldVideoPath)) {
+                    unlink($this->getParameter('videos_directory') . '/' . $oldVideoPath);
+                }
+            } else {
+                $video->setPathVideo($oldVideoPath);
+            }
+
+            if ($currentImage) {
+                $newImage = $this->fileUploader->upload($currentImage, $this->getParameter('pictures_video_directory'));
+                $video->setImage($newImage);
+                if (file_exists($this->getParameter('pictures_video_directory') . '/' . $oldImagePath)) {
+                    unlink($this->getParameter('pictures_video_directory') . '/' . $oldImagePath);
+                }
+            } else {
+                $video->setImage($oldImagePath);
+            }
+
+
+            $this->manager->persist($video);
+            $this->manager->flush();
+            return $this->redirectToRoute('app_panel_videos');
+        }
+
+        return $this->render('admin/edit_video.html.twig', [
+            'form' => $form->createView(),
+            'video' => $video
         ]);
     }
 }

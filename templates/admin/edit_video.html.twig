@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier
+	{{video.title}}
+	| UsTube
+{% endblock %}
+
+{% block body %}
+
+	<section>
+		<div class="loginForm">
+			<h2 class="mb-3 text-center">
+				Mettre en ligne une vidéo
+			</h2>
+			{{form_start(form)}}
+			{% for label,message in app.flashes %}
+				<div class="alert alert-{{label}}">
+					{{ message[0] }}
+				</div>
+			{% endfor %}
+			{{ form_errors(form) }}
+
+
+			<div class="field-form">
+				<div class="field-form">
+					<div class="input-container">
+						{{form_widget(form.title,{'attr': {'class': 'inputEmail'}}) }}
+						{{form_label(form.title, null, {'label_attr': {'class': 'floating-labelEmail'}}) }}
+					</div>
+					<div class="input-container">
+						{{ form_widget(form.description, {'attr': {'class': 'inputPassword'}}) }}
+						{{ form_label(form.description, null, {'label_attr': {'class': 'floating-labelPassword'}}) }}
+					</div>
+					<div>
+						{{form_label(form.path_video)}}
+						{{form_widget(form.path_video , {'attr': {'required': false}})}}
+					</div>
+					<div>
+						{{form_label(form.image)}}
+						{{form_widget(form.image, {'attr': {'required': false}})}}
+					</div>
+				</div>
+
+				<div class="btn-form">
+					{{form_row(form.submit)}}
+				</div>
+				{{form_end(form)}}
+			</div>
+		</section>
+
+	{% endblock %}

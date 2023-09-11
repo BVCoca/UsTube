@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!
+{% block title %}Panel Vidéos | UsTube
 {% endblock %}
 
 {% block body %}
@@ -38,10 +38,10 @@
 									</button>
 									<ul class="dropdown-menu">
 										<li>
-											<a class="dropdown-item" href="#">Modifier</a>
+											<a class="dropdown-item" href="{{path('app_edit_video', {'id': video.id})}}">Modifier</a>
 										</li>
 										<li>
-											<a class="dropdown-item" href="#">Supprimer</a>
+											<a class="dropdown-item" href="{{path('app_remove_video', {'id': video.id})}}">Supprimer</a>
 										</li>
 									</ul>
 								</div>
