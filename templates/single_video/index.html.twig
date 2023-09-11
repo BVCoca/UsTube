@@ -64,29 +64,32 @@
 								</div>
 							</div>
 						</div>
-						{% if app.user.id == comment.user.id %}
-							<div style="position: relative;">
-								<button type="button" class="removeComment" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+						{% if app.user != null %}
 
-								<!-- Modal -->
-								<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h1 class="modal-title fs-5" id="exampleModalLabel">Suppression du commentaire</h1>
-												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-											</div>
-											<div class="modal-body">
-												Voulez vous vraiment supprimer votre commentaire ?
-											</div>
-											<div class="modal-footer">
-												<a href="{{path('app_remove_comment', {'id': comment.id})}}" class="btn btn-red">Supprimer</a>
-												<button type="button" class="btn btn-primary btn-dismiss">Annuler</button>
+							{% if app.user.id == comment.user.id %}
+								<div style="position: relative;">
+									<button type="button" class="removeComment" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+
+									<!-- Modal -->
+									<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h1 class="modal-title fs-5" id="exampleModalLabel">Suppression du commentaire</h1>
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body">
+													Voulez vous vraiment supprimer votre commentaire ?
+												</div>
+												<div class="modal-footer">
+													<a href="{{path('app_remove_comment', {'id': comment.id})}}" class="btn btn-red">Supprimer</a>
+													<button type="button" class="btn btn-primary btn-dismiss">Annuler</button>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							{% endif %}
 						{% endif %}
 					</div>
 				{% endfor %}
