@@ -64,21 +64,46 @@
 				<h5 class="titleCommentsProfil" id="commentTab">Commentaires</h5>
 				<div class="d-flex flex-column mt-4 commentsProfil" id="tabComment">
 					{% for comment in profileUser.comments %}
-						<div class="card cardHover d-flex flex-row containerVideoProfil" onclick="window.location='{{path('app_single_video', {'id': comment.video.id})}}'" style="cursor: pointer;" tabindex="1">
+						<div style="position: relative;">
+							<div class="card cardHover d-flex flex-row containerVideoProfil" onclick="window.location='{{path('app_single_video', {'id': comment.video.id})}}'" style="cursor: pointer;" tabindex="1">
 
-							<div class="cardHover miniatureProfil">
-								<img class="card-img-top" src="{{ asset('uploads/videos/pictures/' ~ comment.video.image) }}" alt="Card image cap">
-							</div>
+								<div class="cardHover miniatureProfil">
+									<img class="card-img-top" src="{{ asset('uploads/videos/pictures/' ~ comment.video.image) }}" alt="Card image cap">
+								</div>
 
-							<div class="card-body d-flex flex-row">
-								<div class="contentCardVideo p-5">
-									<h5 class="card-title">{{comment.video.title}}</h5>
-									<p class="card-text">{{comment.user.pseudo}}
-										:
-										{{comment.content}}</p>
-									<p class="card-text date" id="date-{{comment.id}}">{{comment.createdAt|date('d/m/Y H:i')}}</p>
+								<div class="card-body d-flex flex-row">
+									<div class="contentCardVideo p-5">
+										<h5 class="card-title">{{comment.video.title}}</h5>
+										<p class="card-text">{{comment.user.pseudo}}
+											:
+											{{comment.content}}</p>
+										<p class="card-text date" id="date-{{comment.id}}">{{comment.createdAt|date('d/m/Y H:i')}}</p>
+									</div>
 								</div>
 							</div>
+							{% if app.user.id == comment.user.id %}
+
+								<button type="button" class="removeComment" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+
+								<!-- Modal -->
+								<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h1 class="modal-title fs-5" id="exampleModalLabel">Suppression du commentaire</h1>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body">
+												Voulez vous vraiment supprimer votre commentaire ?
+											</div>
+											<div class="modal-footer">
+												<a href="{{path('app_remove_comment', {'id': comment.id})}}" class="btn btn-red">Supprimer</a>
+												<button type="button" class="btn btn-primary btn-dismiss">Annuler</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							{% endif %}
 						</div>
 					{% endfor %}
 				</div>
