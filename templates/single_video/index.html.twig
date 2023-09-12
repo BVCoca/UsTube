@@ -52,7 +52,13 @@
 					<div class="d-flex mb-4">
 						<div class="d-flex containerComment">
 							<div class="imgAvatarComment">
-								<a href="{{path('app_profil', {'id': comment.user.id})}}"><img src="{{ asset('uploads/pictures/' ~ comment.user.avatar)}}" alt="" class="avatarVideo"></a>
+								<a href="{{path('app_profil', {'id': comment.user.id})}}">
+									{% if comment.user.avatar == null %}
+										<img src="{{ asset('assets/images/profil.png')}}" alt="" class="avatarVideo">
+									{% else %}
+										<img src="{{ asset('uploads/pictures/' ~ comment.user.avatar)}}" alt="" class="avatarVideo">
+									{% endif %}
+								</a>
 							</div>
 							<div class="">
 								<div class="d-flex flex-column">
