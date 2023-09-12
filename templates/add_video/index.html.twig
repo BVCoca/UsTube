@@ -28,9 +28,9 @@
 						{{ form_widget(addVideoForm.description, {'attr': {'class': 'inputPassword'}}) }}
 						{{ form_label(addVideoForm.description, null, {'label_attr': {'class': 'floating-labelPassword'}}) }}
 					</div>
-					{{form_row(addVideoForm.path_video)}}
+					{{form_row(addVideoForm.path_video, {'attr': {'required': true}})}}
 
-					{{form_row(addVideoForm.image)}}
+					{{form_row(addVideoForm.image, {'attr': {'required': true}})}}
 				</div>
 
 				<div class="btn-form">

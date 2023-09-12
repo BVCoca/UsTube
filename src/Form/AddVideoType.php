@@ -20,6 +20,7 @@ class AddVideoType extends AbstractType
                 'label' => 'Fichier Vidéo',
                 'data_class' => null,
                 'mapped' => false,
+                'required' => false,
             ))
             ->add('title', TextType::class, array(
                 'label' => 'Titre',
@@ -32,6 +33,7 @@ class AddVideoType extends AbstractType
                 'label' => 'Miniature',
                 'data_class' => null,
                 'mapped' => false,
+                'required' => false,
             ))
             ->add('submit', SubmitType::class, array(
                 'label' => 'Mettre en ligne',

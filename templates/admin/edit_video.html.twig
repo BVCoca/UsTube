@@ -24,20 +24,20 @@
 			<div class="field-form">
 				<div class="field-form">
 					<div class="input-container">
-						{{form_widget(form.title,{'attr': {'class': 'inputEmail'}}) }}
-						{{form_label(form.title, null, {'label_attr': {'class': 'floating-labelEmail'}}) }}
+						{{form_label(form.title) }}
+						{{form_widget(form.title) }}
 					</div>
 					<div class="input-container">
-						{{ form_widget(form.description, {'attr': {'class': 'inputPassword'}}) }}
-						{{ form_label(form.description, null, {'label_attr': {'class': 'floating-labelPassword'}}) }}
+						{{ form_label(form.description) }}
+						{{ form_widget(form.description) }}
 					</div>
 					<div>
 						{{form_label(form.path_video)}}
-						{{form_widget(form.path_video , {'attr': {'required': false}})}}
+						{{form_widget(form.path_video)}}
 					</div>
 					<div>
 						{{form_label(form.image)}}
-						{{form_widget(form.image, {'attr': {'required': false}})}}
+						{{form_widget(form.image)}}
 					</div>
 				</div>
 
