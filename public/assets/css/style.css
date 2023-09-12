@@ -145,6 +145,7 @@ section {
 
 .card-body {
     padding-left: 0;
+    height: 150px;
 }
 
 .imgAvatarVideo {

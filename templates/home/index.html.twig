@@ -16,7 +16,13 @@
 
 					<div class="card-body d-flex">
 						<div class="imgAvatarVideo">
-							<a href="{{path('app_profil', {'id': video.user.id})}}"><img src="{{ asset('uploads/pictures/' ~ video.user.avatar) }}" alt="Avatar de l'utilisateur qui a posté la vidéo" class="avatarVideo"></a>
+							<a href="{{path('app_profil', {'id': video.user.id})}}">
+								{% if video.user.avatar == null %}
+									<img src="{{ asset('assets/images/profil.png')}}" alt="Avatar de l'utilisateur qui a posté la vidéo" class="avatarVideo">
+								{% else %}
+									<img src="{{ asset('uploads/pictures/' ~ video.user.avatar) }}" alt="Avatar de l'utilisateur qui a posté la vidéo" class="avatarVideo">
+								{% endif %}
+							</a>
 						</div>
 						<div class="contentCardVideo">
 							<h5 class="card-title">{{video.title}}</h5>
