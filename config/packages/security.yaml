@@ -5,6 +5,12 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
+        in_memory:
+            memory:
+                users:
+                    user:
+                        password: '$argon2id$v=19$m=65536,t=4,p=1$VXJzUFlhRnVtNlZ5VjRtTQ$Vmp0DA3t4hZB5X0Yxtf0RrN8rvZENxHxov2A2kHs3n0' # Mot de passe : password
+                        roles: 'ROLE_USER'
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
@@ -22,6 +28,13 @@ security:
                 path: app_logout
                 # where to redirect after logout
                 # target: app_any_route
+            remember_me:
+                secret:   '%kernel.secret%' # required
+                lifetime: 604800 # 1 week in seconds
+                # always_remember_me: true
+                # by default, the feature is enabled by checking a
+                # checkbox in the login form (see below), uncomment the
+                # following line to always enable it.    
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
