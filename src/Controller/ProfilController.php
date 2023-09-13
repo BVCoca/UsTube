@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Video;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -38,5 +39,39 @@ class ProfilController extends AbstractController
             'profileUser' => $profileUser,
             'pageTitle' => $pageTitle,
         ]);
+    }
+
+    /**
+     * @Route("/profil/remove/video/{id}", name="app_remove_video_profil")
+     */
+    public function removeVideo($id)
+    {
+        try {
+            $user = $this->getUser();
+            $video = $this->manager->getRepository(Video::class)->find($id);
+
+            if ($video->getUser() == $user) {
+
+                $oldVideoPath = $video->getPathVideo();
+                $oldImagePath = $video->getImage();
+
+                if (file_exists($this->getParameter('videos_directory') . '/' . $oldVideoPath)) {
+                    unlink($this->getParameter('videos_directory') . '/' . $oldVideoPath);
+                }
+
+                if (file_exists($this->getParameter('pictures_video_directory') . '/' . $oldImagePath)) {
+                    unlink($this->getParameter('pictures_video_directory') . '/' . $oldImagePath);
+                }
+
+                $this->manager->remove($video);
+                $this->manager->flush();
+
+                return $this->redirectToRoute('app_profil');
+            } else {
+                return $this->redirectToRoute('app_home');
+            }
+        } catch (\Throwable $th) {
+            return $this->redirectToRoute('app_home');
+        }
     }
 }
