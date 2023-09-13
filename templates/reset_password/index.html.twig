@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ForgotPasswordController!
+{% endblock %}
+
+{% block body %}
+	<section class="container">
+		<h1 class="text-center text-muted mt-2">Veuillez entrer un nouveau mot de passe</h1>
+		{% for label,message in app.flashes %}
+			<div class="alert alert-{{label}}">
+				{{message[0]}}
+			</div>
+		{% endfor %}
+		<div class="row">
+			<div class="col-md-5 mx-auto">
+				{{form(form)}}
+				</div>
+			</div>
+		</section>
+	{% endblock %}
