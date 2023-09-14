@@ -28,8 +28,9 @@ class ForgotPasswordController extends AbstractController
         $this->urlGenerator = $urlGenerator;
         $this->tokenGenerator = $tokenGenerator;
     }
-
-    #[Route('/forgot/password', name: 'app_forgot_password')]
+    /**
+     * @Route("/forgot/password", name="app_forgot_password")
+     */
     public function index(Request $request): Response
     {
         $form = $this->createForm(ForgotPasswordType::class);

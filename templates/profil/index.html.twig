@@ -64,28 +64,31 @@
 									</div>
 								</div>
 							</div>
-							{% if app.user.id == video.user.id %}
+							{% if app.user != null %}
 
-								<button type="button" class="removeComment" data-bs-toggle="modal" data-bs-target="#videoModal{{video.id}}"></button>
+								{% if app.user.id == video.user.id %}
 
-								<!-- Modal -->
-								<div class="modal fade" id="videoModal{{video.id}}" tabindex="-1" aria-labelledby="videoModal{{video.id}}Label" aria-hidden="true">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h1 class="modal-title fs-5" id="videoModal{{video.id}}Label">Suppression de la vidéo</h1>
-												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-											</div>
-											<div class="modal-body">
-												Voulez vous vraiment supprimer votre vidéo ?
-											</div>
-											<div class="modal-footer">
-												<a href="{{path('app_remove_video_profil', {'id': video.id})}}" class="btn btn-red">Supprimer</a>
-												<button type="button" class="btn btn-primary btn-dismiss">Annuler</button>
+									<button type="button" class="removeComment" data-bs-toggle="modal" data-bs-target="#videoModal{{video.id}}"></button>
+
+									<!-- Modal -->
+									<div class="modal fade" id="videoModal{{video.id}}" tabindex="-1" aria-labelledby="videoModal{{video.id}}Label" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h1 class="modal-title fs-5" id="videoModal{{video.id}}Label">Suppression de la vidéo</h1>
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body">
+													Voulez vous vraiment supprimer votre vidéo ?
+												</div>
+												<div class="modal-footer">
+													<a href="{{path('app_remove_video_profil', {'id': video.id})}}" class="btn btn-red">Supprimer</a>
+													<button type="button" class="btn btn-primary btn-dismiss">Annuler</button>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
+								{% endif %}
 							{% endif %}
 						</div>
 					{% endfor %}
