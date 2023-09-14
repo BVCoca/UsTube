@@ -8,6 +8,13 @@
 	<div class="d-flex justify-content-center">
 		<div class="w-50">
 			<h2 class="text-center mt-4 mb-4">Panel Vidéos</h2>
+			<div class="container w-25 mt-4 text-center">
+				{% for label,message in app.flashes %}
+					<div class="alert alert-{{label}}">
+						{{ message[0] }}
+					</div>
+				{% endfor %}
+			</div>
 			<table class="table">
 				<thead>
 					<tr class="text-center">

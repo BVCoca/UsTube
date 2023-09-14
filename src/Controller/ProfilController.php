@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Video;
+use App\Form\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -73,5 +75,47 @@ class ProfilController extends AbstractController
         } catch (\Throwable $th) {
             return $this->redirectToRoute('app_home');
         }
+    }
+
+    /**
+     * @Route("/profil/edit/{id}", name="app_edit_profil")
+     */
+    public function editProfil($id, Request $request): Response
+    {
+        $user = $this->getUser();
+        $profileUser = $this->manager->getRepository(User::class)->findOneBy(['id' => $id]);
+
+        if ($user->getId() == $profileUser->getId()) {
+            $form = $this->createForm(RegisterType::class, $profileUser);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted()  && $form->isValid()) {
+
+                $oldAvatarPath = $profileUser->getAvatar();
+                $currentAvatar = $form->get('avatar')->getData();
+    
+                if ($currentAvatar) {
+                    $newAvatar = $this->fileUploader->upload($currentAvatar, $this->getParameter('pictures_video_directory'));
+                    $video->setAvatar($newAvatar);
+                    if (file_exists($this->getParameter('pictures_video_directory') . '/' . $oldAvatarPath)) {
+                        unlink($this->getParameter('pictures_video_directory') . '/' . $oldAvatarPath);
+                    }
+                } else {
+                    $video->setImage($oldImagePath);
+                }
+    
+    
+                $this->manager->persist($video);
+                $this->manager->flush();
+                return $this->redirectToRoute('app_panel_videos');
+        } else {
+            return $this->redirectToRoute('app_profil', ['id' => $user->getId()]);
+        }
+
+
+        return $this->render('admin/edit_video.html.twig', [
+            'form' => $form->createView(),
+            /* 'video' => $video */
+        ]);
     }
 }

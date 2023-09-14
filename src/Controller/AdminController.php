@@ -68,7 +68,7 @@ class AdminController extends AbstractController
         $this->manager->remove($video);
         $this->manager->flush();
         $this->addFlash('success', 'Vidéo supprimée avec succès');
-        return $this->redirectToRoute('app_admin');
+        return $this->redirectToRoute('app_panel_videos');
     }
 
     /**
