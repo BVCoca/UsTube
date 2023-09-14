@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panel Commentaires | UsTube
+{% endblock %}
+
+{% block body %}
+	{% include "admin/menuDashboard.html.twig" %}
+	<div class="d-flex justify-content-center">
+		<div class="w-50">
+			<h2 class="text-center mt-4 mb-4">Panel Commentaires</h2>
+			<div class="container w-25 mt-4 text-center">
+				{% for label,message in app.flashes %}
+					<div class="alert alert-{{label}}">
+						{{ message[0] }}
+					</div>
+				{% endfor %}
+			</div>
+			<table class="table">
+				<thead>
+					<tr class="text-center">
+						<th scope="col">Vidéo</th>
+						<th scope="col">Commentaire</th>
+						<th scope="col">Pseudo</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for comment in comments %}
+						<tr class="text-center">
+							<td>
+								<a href="{{path('app_single_video', {'id': comment.video.id})}}"><img src="{{ asset('uploads/videos/pictures/' ~ comment.video.image) }}" alt="" class="w-50"></a>
+							</td>
+							<td class="tdCenter">{{comment.content }}</td>
+							<td class="tdCenter">
+								<a href="{{path('app_profil', {'id': comment.video.user.id})}}" class="pseudoLink">
+									{{comment.video.user.pseudo}}</a>
+							</td>
+							<td class="tdCenter">
+								<div class="dropdown">
+									<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Actions
+									</button>
+									<ul class="dropdown-menu">
+										<li>
+											<a class="dropdown-item" href="{{path('app_remove_comment_admin', {'id': comment.id})}}">Supprimer</a>
+										</li>
+									</ul>
+								</div>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

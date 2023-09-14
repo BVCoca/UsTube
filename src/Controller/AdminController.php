@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Video;
+use App\Entity\Comments;
 use App\Form\AddVideoType;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
@@ -120,5 +121,33 @@ class AdminController extends AbstractController
             'form' => $form->createView(),
             'video' => $video
         ]);
+    }
+
+    /**
+     * @Route("/admin/panel_comments", name="app_panel_comments")
+     */
+    public function panelComments(): Response
+    {
+        $comments = $this->manager->getRepository(Comments::class)->findAll();
+
+        return $this->render('admin/panelComments.html.twig', [
+            'controller_name' => 'AdminController',
+            'comments' => $comments,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/remove/comment/{id}", name="app_remove_comment_admin")
+     */
+    public function removeComment($id): Response
+    {
+        $comment = $this->manager->getRepository(Comments::class)->find($id);
+
+
+
+        $this->manager->remove($comment);
+        $this->manager->flush();
+        $this->addFlash('success', 'Commentaire supprimée avec succès');
+        return $this->redirectToRoute('app_panel_comments');
     }
 }

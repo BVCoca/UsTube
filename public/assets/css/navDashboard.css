@@ -16,11 +16,10 @@
 .sidenavDashboard a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     color: #55A5C4;
     display: block;
     transition: 0.3s;
-    text-align: center;
 }
 
 .sidenavDashboard img {
