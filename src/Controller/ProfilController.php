@@ -5,19 +5,25 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Video;
 use App\Form\RegisterType;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class ProfilController extends AbstractController
 {
     private $manager;
+    private $fileUploader;
+    public $passwordHash;
 
-    public function __construct(EntityManagerInterface $manager)
+    public function __construct(EntityManagerInterface $manager, FileUploader $fileUploader, UserPasswordHasherInterface $passwordHash)
     {
         $this->manager = $manager;
+        $this->fileUploader = $fileUploader;
+        $this->passwordHash = $passwordHash;
     }
 
     /**
@@ -85,37 +91,49 @@ class ProfilController extends AbstractController
         $user = $this->getUser();
         $profileUser = $this->manager->getRepository(User::class)->findOneBy(['id' => $id]);
 
-        if ($user->getId() == $profileUser->getId()) {
+        if ($user !== $profileUser) {
+            return $this->redirectToRoute('app_home');
+        } else {
             $form = $this->createForm(RegisterType::class, $profileUser);
             $form->handleRequest($request);
 
             if ($form->isSubmitted()  && $form->isValid()) {
-
                 $oldAvatarPath = $profileUser->getAvatar();
                 $currentAvatar = $form->get('avatar')->getData();
-    
+                $oldPassword = $profileUser->getPassword();
+
                 if ($currentAvatar) {
-                    $newAvatar = $this->fileUploader->upload($currentAvatar, $this->getParameter('pictures_video_directory'));
-                    $video->setAvatar($newAvatar);
-                    if (file_exists($this->getParameter('pictures_video_directory') . '/' . $oldAvatarPath)) {
-                        unlink($this->getParameter('pictures_video_directory') . '/' . $oldAvatarPath);
+                    $newAvatar = $this->fileUploader->upload($currentAvatar, $this->getParameter('pictures_directory'));
+                    $profileUser->setAvatar($newAvatar);
+
+                    if ($oldAvatarPath != null) {
+                        if (file_exists($this->getParameter('pictures_directory') . '/' . $oldAvatarPath)) {
+                            unlink($this->getParameter('pictures_directory') . '/' . $oldAvatarPath);
+                        }
                     }
                 } else {
-                    $video->setImage($oldImagePath);
+                    $profileUser->setAvatar($oldAvatarPath);
                 }
-    
-    
-                $this->manager->persist($video);
+
+
+                if (empty($form->get('password')->getData())) {
+                    $profileUser->setPassword($oldPassword);
+                } else {
+                    $passwordClear = $form->get('password')->getData();
+                    $passwordIsHashed = $this->passwordHash->hashPassword($profileUser, $passwordClear);
+                    $profileUser->setPassword($passwordIsHashed);
+                }
+
+                $this->manager->persist($profileUser);
                 $this->manager->flush();
-                return $this->redirectToRoute('app_panel_videos');
-        } else {
-            return $this->redirectToRoute('app_profil', ['id' => $user->getId()]);
+                return $this->redirectToRoute('app_profil', ['id' => $user->getId()]);
+            }
+
+
+            return $this->render('profil/edit_profile.html.twig', [
+                'form' => $form->createView(),
+                'profileUser' => $profileUser
+            ]);
         }
-
-
-        return $this->render('admin/edit_video.html.twig', [
-            'form' => $form->createView(),
-            /* 'video' => $video */
-        ]);
     }
 }

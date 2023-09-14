@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier
+	{{profileUser.pseudo}}
+	| UsTube
+{% endblock %}
+
+{% block body %}
+
+	<section>
+		<div class="loginForm">
+			<h2 class="mb-3 text-center">
+				Mettre en ligne une vidéo
+			</h2>
+			{{form_start(form)}}
+			{% for label,message in app.flashes %}
+				<div class="alert alert-{{label}}">
+					{{ message[0] }}
+				</div>
+			{% endfor %}
+			{{ form_errors(form) }}
+
+			<div class="field-form">
+				<div class="field-form">
+					<div class="input-container">
+						{{form_label(form.email)}}
+						{{form_widget(form.email)}}
+					</div>
+					<div class="input-container">
+						{{ form_label(form.password.first) }}
+						{{ form_widget(form.password.first) }}
+					</div>
+					<div class="input-container">
+						{{ form_label(form.password.second) }}
+						{{ form_widget(form.password.second) }}
+					</div>
+					<div class="input-container">
+						{{ form_label(form.pseudo) }}
+						{{ form_widget(form.pseudo) }}
+					</div>
+					{{form_row(form.avatar)}}
+				</div>
+				<div class="btn-form">
+					{{form_row(form.submit, {'label': 'Modifier'})}}
+				</div>
+			</div>
+			{{form_end(form)}}
+		</div>
+	</section>
+
+{% endblock %}

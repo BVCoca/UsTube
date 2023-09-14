@@ -18,7 +18,7 @@
 
 			<div class="card" style="width: 22rem;">
 				<div class="card-body">
-					<h5 class="card-title mb-4">Vos informations :</h5>
+					<h5 class="card-title mb-3">Vos informations :</h5>
 					<p class="card-subtitle mb-2 text-body-secondary ms-5">Pseudo :
 						{{app.user.pseudo}}</p>
 					<p class="card-subtitle mb-2 text-body-secondary ms-5">Adresse mail :
@@ -27,20 +27,20 @@
 						{{app.user.createdAt | date('d/m/y')}}</p>
 				</div>
 			</div>
-			<a href="{{path('app_edit_profil', {'id': profileUser.id})}}">test</a>
+			<a href="{{path('app_edit_profil', {'id': profileUser.id})}}" class="btn mt-4">Modifier les informations</a>
 		</div>
 	{% else %}
 		<div class="d-flex flex-column align-items-center">
-			<h2 class="text-center mt-4 mb-4">
-				{{profileUser.pseudo}}
-			</h2>
-			<div class="d-flex justify-content-center avatarProfilContainer">
+			<div class="d-flex justify-content-center avatarProfilContainer mt-4">
 				{% if profileUser.avatar == null %}
 					<img src="{{ asset('assets/images/profil.png') }}" alt="" class="avatarProfil">
 				{% else %}
 					<img src="{{ asset('uploads/pictures/' ~ profileUser.avatar) }}" alt="" class="avatarProfil">
 				{% endif %}
 			</div>
+			<h2 class="text-center mt-4 mb-4">
+				{{profileUser.pseudo}}
+			</h2>
 		</div>
 	{% endif %}
 

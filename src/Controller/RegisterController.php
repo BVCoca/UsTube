@@ -42,7 +42,7 @@ class RegisterController extends AbstractController
                 $user->setCreatedAt(new \DateTime());
 
                 // On récupère le mot de passe en clair
-                $passwordClear = $user->getPassword();
+                $passwordClear = $form->get('password')->getData();
                 // On le hash
                 $passwordIsHashed = $this->passwordHash->hashPassword($user, $passwordClear);
                 // On le remet dans l'objet

@@ -49,11 +49,15 @@ class RegisterType extends AbstractType
                     'attr' =>
                     [
                         'class' => 'inputPasswordConfirm'
-                    ]
-                ]
+                    ],
+                ],
+                'required' => false,
+                'mapped' => false,
             ])
             ->add('avatar', FileType::class, array(
                 'label' => 'Avatar',
+                'data_class' => null,
+                'mapped' => false,
                 'required'   => false,
             ))
             ->add('pseudo', TextType::class, [
