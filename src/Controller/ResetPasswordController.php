@@ -22,7 +22,9 @@ class ResetPasswordController extends AbstractController
         $this->manager = $manager;
     }
 
-    #[Route('/reset/password', name: 'app_reset_password')]
+    /**
+     * @Route("/reset/password", name="app_reset_password")
+     */
     public function index(Request $request): Response
     {
         $token = $request->query->get('token');
