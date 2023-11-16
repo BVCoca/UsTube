@@ -159,6 +159,7 @@ section {
 .avatarVideo {
     width: 80%;
     border-radius: 100%;
+    height: 45px;
 }
 
 .contentCardVideo {
