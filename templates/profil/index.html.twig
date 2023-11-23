@@ -116,7 +116,7 @@
 									</div>
 								</div>
 							</div>
-							{% if app.user.id == comment.user.id %}
+							{% if (app.user != null) and (app.user.id == comment.user.id) %}
 
 								<button type="button" class="removeComment" data-bs-toggle="modal" data-bs-target="#commentModal{{comment.id}}"></button>
 
