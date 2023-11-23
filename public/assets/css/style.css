@@ -161,6 +161,11 @@ section {
     border-radius: 100%;
     height: 45px;
 }
+.avatarVideoDetail {
+    width: 80%;
+    border-radius: 100%;
+    height: 70px;
+}
 
 .contentCardVideo {
     width: 100%;
@@ -309,6 +314,7 @@ section {
 .avatarProfil {
     width: 100%;
     border-radius: 100%;
+    height: 180px;
 }
 
 .titleVideosProfil {
