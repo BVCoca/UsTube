@@ -32,9 +32,15 @@
 			{% if app.user != null %}
 				{{form_start(commentForm)}}
 				<div class="d-flex w-100 align-items-center">
-					<div class="imgAvatarComment">
-						<a href="{{path('app_profil', {'id': video.user.id})}}"><img src="{{ asset('uploads/pictures/' ~ app.user.avatar)}}" alt="" class="avatarVideo"></a>
-					</div>
+					{% if app.user.avatar != null %}
+						<div class="imgAvatarComment">
+							<a href="{{path('app_profil', {'id': app.user.id})}}"><img src="{{ asset('uploads/pictures/' ~ app.user.avatar)}}" alt="" class="avatarVideo"></a>
+						</div>
+					{% else %}
+						<div class="imgAvatarComment">
+							<a href="{{path('app_profil', {'id': app.user.id})}}"><img src="{{ asset('assets/images/profil.png')}}" alt="" class="avatarVideo"></a>
+						</div>
+					{% endif %}
 
 					<div class="commentInput">
 						{{ form_widget(commentForm.content)}}
